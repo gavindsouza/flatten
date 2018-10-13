@@ -17,6 +17,7 @@ Table of Contents
 -  `Installation`_
 -  `Usage`_
 -  `Dependencies`_
+-  `Sample Images`_
 -  `License`_
 
 
@@ -60,8 +61,17 @@ this will create a compressed form of the image in the same folder
 Dependencies
 ~~~~~~~~~~~~~
 
-- something
+- numpy
+- matplotlib
+
 .. _Dependencies: requirements.txt
+
+Sample Images
+~~~~~~~~~~~~~~
+
+The very large Sample Images obtained from `effigis Geo Solutions`_
+
+.. _effigis Geo Solutions: https://www.effigis.com/en/solutions/satellite-images/satellite-image-samples/
 
 License
 ~~~~~~~
