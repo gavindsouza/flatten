@@ -67,7 +67,7 @@ class Compress:
 
 
 """
-from my notebook reference
+from my notebook reference :: added ref 
 
 img_ = plt.imread('nystylepizza.png')
 r, g, b = cv2.split(img_)
