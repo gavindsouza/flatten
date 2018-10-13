@@ -30,11 +30,11 @@ class Compress:
         self.max_b = np.amax(self.fft2d_b)
 
     def __thresh__(self, x):
-        self.th_r = abs(0.1 * self.max_r * x)
-        self.th_g = abs(0.1 * self.max_g * x)
-        self.th_b = abs(0.1 * self.max_b * x)
+        th_r = abs(0.1 * self.max_r * x)
+        th_g = abs(0.1 * self.max_g * x)
+        th_b = abs(0.1 * self.max_b * x)
 
-        return self.th_r, self.th_g, self.th_b
+        return th_r, th_g, th_b
 
     def compress_soft(self):
         x = 0.001
@@ -64,3 +64,25 @@ class Compress:
     def compress_hard(self):
         x = 0.01
         th_r, th_g, th_b = self.__thresh__(x)
+
+
+"""
+from my notebook reference
+
+img_ = plt.imread('nystylepizza.png')
+r, g, b = cv2.split(img_)
+r, g, b = fft2(r), fft2(g), fft2(b)
+
+r[r < np.average(r)] = 0
+g[g < np.average(g)] = 0
+b[b < np.average(b)] = 0
+
+r, g, b = ifft2(r), ifft2(g), ifft2(b)
+
+img_[..., 0] = r
+img_[..., 1] = g
+img_[..., 2] = b
+
+plt.imshow(abs(img))
+
+"""
