@@ -2,7 +2,7 @@ clear all, close all, clc
 
 %% Load full image
 disp('Loading full image...')
-A=imread('recorder','jpeg');
+A=imread("C:\Users\Gavin\Desktop\Code\Python\other_projects\flatten\flatten\samples\images\blue_flower_very_small.jpg");
 figure(3);
 imshow(A)
 
