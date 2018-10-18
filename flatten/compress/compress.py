@@ -1,12 +1,10 @@
 # ref images at https://www.effigis.com/en/solutions/satellite-images/satellite-image-samples/
+# my notebook ~ flatten/_refs
+# colab trials ~ https://colab.research.google.com/drive/1ETj5ytlNOHSUrMc31JM6EDWdqeXLxMJg#scrollTo=Jd918I5mLtk1
 
 from numpy.fft import fft2, ifft2
 import numpy as np
 import cv2
-
-import matplotlib.pyplot as plt
-import shutil
-import requests
 
 
 class Compress:
@@ -38,6 +36,7 @@ class Compress:
 
     def compress_soft(self):
         x = 0.001
+        c_img = np.zeros(shape=self.img)
         th_r, th_g, th_b = self.__thresh__(x)
 
         for i in range(len(self.fft2_img)):  # row
@@ -53,17 +52,37 @@ class Compress:
         g = ifft2(self.fft2_img[..., 1])
         b = ifft2(self.fft2_img[..., 2])
 
-        self.img[..., 0], self.img[..., 1], self.img[..., 2] = r, g, b
+        c_img[..., 0], c_img[..., 1], c_img[..., 2] = r, g, b
 
-        return self.img
+        return c_img
 
     def compress_okay(self):
         x = 0.005
+        c_img = self.img.copy()
         th_r, th_g, th_b = self.__thresh__(x)
+
+        c_img[self.fft2_img[..., 0] < th_r] = 0
+        c_img[self.fft2_img[..., 1] < th_g] = 0
+        c_img[self.fft2_img[..., 2] < th_b] = 0
+
+        for i in range(3):  # three channels
+            c_img[..., i] = ifft2(c_img[..., i])
+
+        return c_img
 
     def compress_hard(self):
         x = 0.01
+        c_img = self.img.copy()
         th_r, th_g, th_b = self.__thresh__(x)
+
+        c_img[self.fft2_img[..., 0] < th_r] = 0
+        c_img[self.fft2_img[..., 1] < th_g] = 0
+        c_img[self.fft2_img[..., 2] < th_b] = 0
+
+        for i in range(3):  # three channels
+            c_img[..., i] = ifft2(c_img[..., i])
+
+        return c_img
 
 
 """
