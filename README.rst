@@ -2,6 +2,7 @@ flatten
 ==================================================
 *"Image Compression using Digital Signal Processing"*
 
+..
 |Build Status| |Documentation Status|
 
 .. |Build Status| image:: https://travis-ci.org/gavindsouza/flatten.svg?branch=master
